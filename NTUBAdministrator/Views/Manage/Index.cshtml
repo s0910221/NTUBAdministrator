@@ -1,0 +1,27 @@
+﻿@model NTUBAdministrator.Models.IndexViewModel
+@{
+    ViewBag.Title = "管理";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<div>
+    <h4>變更帳戶設定</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>密碼:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("變更密碼", "ChangePassword")
+            }
+            ]
+        </dd>
+        <dt>外部登入:</dt>
+        <dd>
+            @Model.Logins.Count [
+            @Html.ActionLink("管理", "ManageLogins") ]
+        </dd>
+    </dl>
+</div>

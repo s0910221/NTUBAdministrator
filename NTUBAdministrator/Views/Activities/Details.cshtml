@@ -1,0 +1,107 @@
+﻿@model NTUBAdministrator.Models.Activity
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Activity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicantLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicantLimit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Meal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Meal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudyProof)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudyProof)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudyHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudyHours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityStartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityStartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityEndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityEndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyStartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyStartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyEndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyEndTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ActivityID }) |
+    @Html.ActionLink("Back to List", "ActivityManagement")
+</p>

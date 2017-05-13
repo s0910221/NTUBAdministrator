@@ -1,0 +1,172 @@
+﻿@model NTUBAdministrator.ViewModels.ActivityCalendarDetailViewModel
+
+@{
+    ViewBag.Title = "報名活動";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>報名活動</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicantLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicantLimit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Meal)
+        </dt>
+
+        <dd>
+            @if (Model.Meal == "0")
+            {
+                <p>否</p>
+            }
+            @if (Model.Meal == "1")
+            {
+                <p>是</p>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudyProof)
+        </dt>
+
+        <dd>
+            @if (Model.StudyProof == "0")
+            {
+                <p>否</p>
+            }
+            @if (Model.StudyProof == "1")
+            {
+                <p>是</p>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudyHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudyHours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityStartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityStartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityEndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityEndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyStartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyStartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyEndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyEndTime)
+        </dd>
+    </dl>
+</div>
+@if (Model.SystemLevel != null)
+{
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button class="btn btn-default">@Html.ActionLink("返回", "ActivityCalendar")</button>
+        </div>
+    </div>
+}
+
+@if (Model.SystemLevel == null)
+{
+
+    if (Model.IsCancel == null || Model.IsCancel.Equals("1"))
+    {
+        using (Html.BeginForm("ApplyActivity", "Activities", FormMethod.Post, new { id = "ApplyForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @if (Model.Meal == "1")
+                {
+                <div class="col-md-offset-2 col-md-10">
+                    <p>是否需要餐點</p>
+                    <input type="radio" name="NeedMeal" value="1" checked="checked" />是 &nbsp;
+                    <input type="radio" name="NeedMeal" value="0" />否
+                </div>
+                }
+                <br /><br /><br />
+
+                <div class="col-md-offset-2 col-md-10">
+                    <input hidden name="ActivityID" value="@Model.ActivityID" />
+                    <input hidden name="Meal" value="@Model.Meal" />
+                    <input hidden id="attend" name="Attend" value="0" />
+                    <button class="btn btn-default" onclick="submitForm(1)">報名</button>
+                    <button class="btn btn-default" onclick="submitForm(0)">@Html.ActionLink("返回", "ActivityCalendar")</button>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        using (Html.BeginForm("CancelApplyActivity", "Activities", FormMethod.Post, new { id = "ApplyForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input hidden name="ActivityID" value="@Model.ActivityID" />
+                    <input hidden name="Attend" id="attend" value="0" />
+                    <h5 style="color:red;">已報名</h5>
+                    <button class="btn btn-default" onclick="submitForm(1)">取消報名</button>
+                    <button class="btn btn-default" onclick="submitForm(0)">@Html.ActionLink("返回", "ActivityCalendar")</button>
+                </div>
+            </div>
+        }
+    }
+    <script>
+        function submitForm(attend) {
+            $("#attend").val(attend);
+        }
+    </script>
+}
+<style>
+    p {
+        margin: 0;
+    }
+</style>

@@ -1,0 +1,200 @@
+﻿@model NTUBAdministrator.ViewModels.ActivitiesCheckViewModel
+
+@{
+    ViewBag.Title = @ViewBag.contentTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.contentTitle </h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicantLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicantLimit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Meal)
+        </dt>
+
+        <dd>
+            @if (Model.Meal == "0")
+            {
+                <p>否</p>
+            }
+            @if (Model.Meal == "1")
+            {
+                <p>是</p>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudyProof)
+        </dt>
+
+        <dd>
+            @if (Model.StudyProof == "0")
+            {
+                <p>否</p>
+            }
+            @if (Model.StudyProof == "1")
+            {
+                <p>是</p>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudyHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudyHours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @if (Model.Status == "0")
+            {
+                <p>審請中</p>
+            }
+            @if (Model.Status == "1")
+            {
+                <p>已通過</p>
+            }
+            @if (Model.Status == "2")
+            {
+                <p>未通過</p>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityStartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityStartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityEndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityEndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyStartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyStartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyEndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyEndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Creator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Creator)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityOrganizer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityOrganizer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivityCoOrganizer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivityCoOrganizer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivitySponsor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivitySponsor)
+        </dd>
+
+    </dl>
+</div>
+@if (Model.SystemLevel != null)
+{
+    using (Html.BeginForm("CheckActivity", "Activities", FormMethod.Post, new { id = "CheckForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input hidden name="ActivityID" value="@Model.ActivityID" />
+                <input hidden id="status" name="Status" value="@Model.Status" />
+                <button class="btn btn-default" onclick="submitForm(1)">通過</button>
+                <button class="btn btn-default" onclick="submitForm(2)">不通過</button>
+                <button class="btn btn-default">@Html.ActionLink("取消", "ActivityManagement")</button>
+            </div>
+        </div>
+    }
+    <script>
+        function submitForm(status) {
+            $("#status").val(status);
+        }
+    </script>
+}
+@if (Model.SystemLevel == null)
+{
+    <div class="col-md-offset-2 col-md-10">
+        <button class="btn btn-default">@Html.ActionLink("返回", "ActivityManagement")</button>
+    </div>
+}
+
+<style>
+    p {
+        margin: 0;
+    }
+</style>

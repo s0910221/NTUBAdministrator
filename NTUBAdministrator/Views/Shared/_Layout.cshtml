@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 國立臺北商業大學學務行政資訊系統</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/TreeMenu/js")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <style>
+        ul.pde li {
+            list-style-type: none;
+            /*list-style-image: url(~/Content/box1.png);*/
+        }
+
+        ul.pde li:hover {
+            list-style-type: none;
+            /*list-style-image: url(~/Content/box2.png);*/
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">國立臺北商業大學學務行政資訊系統</a>
+                @*@Html.ActionLink("國立臺北商業大學學務行政資訊系統", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse">
+                @*<ul class="nav navbar-nav">
+        <li>@Html.ActionLink("首頁", "Index", "Home")</li>
+        <li>@Html.ActionLink("辦理活動系統", "Index", "Activities")</li>
+    </ul>*@
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="container" style="margin:10px 0;">
+        <div style="width:20%; float:left;">
+            <ul class="pde">
+                <li>@Html.ActionLink("首頁", "Index", "Home")</li>
+                <li>@Html.ActionLink("辦理活動系統", "Index", "Activities")
+                    <ul>
+                        <li>@Html.ActionLink("行事曆", "ActivityCalendar", "Activities")</li>
+                        @if (@Session["AccountID"] != null)
+                        {
+                            <li>@Html.ActionLink("活動管理", "ActivityManagement", "Activities")</li>
+                        }
+                         
+                    </ul>
+                </li>                
+            </ul>
+        </div>
+        <div class="body-content" style="width:80%; float:right;">
+            @RenderBody()
+            <hr />
+        </div>
+    </div>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

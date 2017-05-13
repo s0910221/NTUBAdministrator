@@ -1,0 +1,55 @@
+﻿@model IEnumerable<NTUBAdministrator.ViewModels.ActivitiesManagementViewModel>
+
+@{
+    ViewBag.Title = "活動管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>活動管理</h2>
+
+<p>
+    @Html.ActionLink("新增活動", "AddActivity")
+    @Html.ActionLink("新增活動種類", "AddActivityType")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ActivityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActivityName)
+        </td>        
+        <td>
+            @if (@item.Status == "0")
+            {@*申請中*@
+                <p>申請中</p>
+            }
+            
+            @if (@item.Status == "1")
+            {@*已通過*@
+                <p>已通過</p>
+            }
+
+            @if (@item.Status == "2")
+            {@*未通過*@
+                <p>未通過</p>
+            }
+        </td>
+        <td>@*這邊要修改*@
+            @*
+                @Html.ActionLink("編輯活動", "Edit", new { id = item.ActivityID
+            *@
+            @Html.ActionLink("活動內容", "CheckActivity", new { id=item.ActivityID })
+        </td>
+    </tr>
+}
+
+</table>

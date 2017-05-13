@@ -1,0 +1,1157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityID" />
+          </Key>
+          <Property Name="ActivityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="5000" Nullable="false" />
+          <Property Name="ActivityType" Type="smallint" Nullable="false" />
+          <Property Name="ApplicantLimit" Type="int" />
+          <Property Name="Meal" Type="char" MaxLength="1" />
+          <Property Name="StudyProof" Type="char" MaxLength="1" />
+          <Property Name="StudyHours" Type="float" />
+          <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ActivityStartTime" Type="smalldatetime" />
+          <Property Name="ActivityEndTime" Type="smalldatetime" />
+          <Property Name="ApplyStartTime" Type="smalldatetime" />
+          <Property Name="ApplyEndTime" Type="smalldatetime" />
+          <Property Name="CreateID" Type="varchar" MaxLength="20" />
+          <Property Name="CreateTime" Type="date" />
+          <Property Name="ModifyID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifyTime" Type="date" />
+          <Property Name="Record" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="ActivityApplicant">
+          <Key>
+            <PropertyRef Name="ApplicantID" />
+          </Key>
+          <Property Name="ApplicantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityID" Type="int" Nullable="false" />
+          <Property Name="ApplyID" Type="varchar" MaxLength="20" />
+          <Property Name="IsCancel" Type="char" MaxLength="1" />
+          <Property Name="IsAttend" Type="char" MaxLength="1" />
+          <Property Name="AttendTime" Type="date" />
+        </EntityType>
+        <EntityType Name="ActivityApplicantInformation">
+          <Key>
+            <PropertyRef Name="InformationID" />
+          </Key>
+          <Property Name="InformationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicantID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="Sex" Type="tinyint" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="Meal" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="ActivityAttachment">
+          <Key>
+            <PropertyRef Name="AttachmentID" />
+          </Key>
+          <Property Name="AttachmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityID" Type="int" Nullable="false" />
+          <Property Name="AttachmentPath" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ActivityCoOrganizer">
+          <Key>
+            <PropertyRef Name="CoOrganizerID" />
+          </Key>
+          <Property Name="CoOrganizerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActivityOrganizer">
+          <Key>
+            <PropertyRef Name="OrganizerID" />
+          </Key>
+          <Property Name="OrganizerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActivityResult">
+          <Key>
+            <PropertyRef Name="ResultID" />
+          </Key>
+          <Property Name="ResultID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityID" Type="int" Nullable="false" />
+          <Property Name="Result" Type="varchar" MaxLength="5000" />
+        </EntityType>
+        <EntityType Name="ActivitySponsor">
+          <Key>
+            <PropertyRef Name="SponsorID" />
+          </Key>
+          <Property Name="SponsorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActivityType">
+          <Key>
+            <PropertyRef Name="ActivityTypeID" />
+          </Key>
+          <Property Name="ActivityTypeID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="300" />
+          <Property Name="CreateID" Type="varchar" MaxLength="20" />
+          <Property Name="CreateTime" Type="date" />
+          <Property Name="ModifyID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifyTime" Type="date" />
+          <Property Name="Record" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="CodeTable">
+          <Key>
+            <PropertyRef Name="CodeTableID" />
+          </Key>
+          <Property Name="CodeTableID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ColumnName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="30" />
+          <Property Name="CreateID" Type="varchar" MaxLength="20" />
+          <Property Name="CreateTime" Type="date" />
+          <Property Name="ModifyID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifyTime" Type="date" />
+          <Property Name="Record" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentEName" Type="varchar" MaxLength="50" />
+          <Property Name="CreateID" Type="varchar" MaxLength="20" />
+          <Property Name="CreateTime" Type="date" />
+          <Property Name="ModifyID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifyTime" Type="date" />
+          <Property Name="Record" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="DepartmentAuthentication">
+          <Key>
+            <PropertyRef Name="AuthenticationID" />
+          </Key>
+          <Property Name="AuthenticationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="FunctionAuthentication" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateID" Type="varchar" MaxLength="20" />
+          <Property Name="CreateTime" Type="date" />
+          <Property Name="ModifyID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifyTime" Type="date" />
+          <Property Name="Record" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="SystemLevel" Type="int" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Enabled" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Record" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="UserAuthentication">
+          <Key>
+            <PropertyRef Name="AuthenticationID" />
+          </Key>
+          <Property Name="AuthenticationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FunctionAuthentication" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateID" Type="varchar" MaxLength="20" />
+          <Property Name="CreateTime" Type="date" />
+          <Property Name="ModifyID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifyTime" Type="date" />
+          <Property Name="Record" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <Association Name="FK__Activity__Activi__123EB7A3">
+          <End Role="ActivityType" Type="Self.ActivityType" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityType">
+              <PropertyRef Name="ActivityTypeID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ActivityType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActivityA__Activ__208CD6FA">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="ActivityAttachment" Type="Self.ActivityAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="ActivityAttachment">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActivityA__Activ__236943A5">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="ActivityApplicant" Type="Self.ActivityApplicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="ActivityApplicant">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActivityA__Appli__2645B050">
+          <End Role="ActivityApplicant" Type="Self.ActivityApplicant" Multiplicity="1" />
+          <End Role="ActivityApplicantInformation" Type="Self.ActivityApplicantInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityApplicant">
+              <PropertyRef Name="ApplicantID" />
+            </Principal>
+            <Dependent Role="ActivityApplicantInformation">
+              <PropertyRef Name="ApplicantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActivityC__Activ__17F790F9">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="ActivityCoOrganizer" Type="Self.ActivityCoOrganizer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="ActivityCoOrganizer">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActivityO__Activ__151B244E">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="ActivityOrganizer" Type="Self.ActivityOrganizer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="ActivityOrganizer">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActivityR__Activ__1DB06A4F">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="ActivityResult" Type="Self.ActivityResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="ActivityResult">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActivityS__Activ__1AD3FDA4">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="ActivitySponsor" Type="Self.ActivitySponsor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="ActivitySponsor">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CodeTable__Creat__72C60C4A">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="CodeTable" Type="Self.CodeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="CodeTable">
+              <PropertyRef Name="CreateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CodeTable__Modif__73BA3083">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="CodeTable" Type="Self.CodeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="CodeTable">
+              <PropertyRef Name="ModifyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Creat__66603565">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="CreateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Creat__6B24EA82">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="DepartmentAuthentication" Type="Self.DepartmentAuthentication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="DepartmentAuthentication">
+              <PropertyRef Name="CreateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Depar__6A30C649">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="DepartmentAuthentication" Type="Self.DepartmentAuthentication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="DepartmentAuthentication">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Modif__6754599E">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="ModifyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Modif__6C190EBB">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="DepartmentAuthentication" Type="Self.DepartmentAuthentication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="DepartmentAuthentication">
+              <PropertyRef Name="ModifyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserAuthe__Creat__6EF57B66">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="UserAuthentication" Type="Self.UserAuthentication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="UserAuthentication">
+              <PropertyRef Name="CreateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserAuthe__Modif__6FE99F9F">
+          <End Role="UserAccount" Type="Self.UserAccount" Multiplicity="0..1" />
+          <End Role="UserAuthentication" Type="Self.UserAuthentication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="UserAuthentication">
+              <PropertyRef Name="ModifyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EntitiesModelStoreContainer">
+          <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityApplicant" EntityType="Self.ActivityApplicant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityApplicantInformation" EntityType="Self.ActivityApplicantInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityAttachment" EntityType="Self.ActivityAttachment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityCoOrganizer" EntityType="Self.ActivityCoOrganizer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityOrganizer" EntityType="Self.ActivityOrganizer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityResult" EntityType="Self.ActivityResult" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivitySponsor" EntityType="Self.ActivitySponsor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityType" EntityType="Self.ActivityType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CodeTable" EntityType="Self.CodeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartmentAuthentication" EntityType="Self.DepartmentAuthentication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAuthentication" EntityType="Self.UserAuthentication" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Activity__Activi__123EB7A3" Association="Self.FK__Activity__Activi__123EB7A3">
+            <End Role="ActivityType" EntitySet="ActivityType" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActivityA__Activ__208CD6FA" Association="Self.FK__ActivityA__Activ__208CD6FA">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="ActivityAttachment" EntitySet="ActivityAttachment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActivityA__Activ__236943A5" Association="Self.FK__ActivityA__Activ__236943A5">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="ActivityApplicant" EntitySet="ActivityApplicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActivityA__Appli__2645B050" Association="Self.FK__ActivityA__Appli__2645B050">
+            <End Role="ActivityApplicant" EntitySet="ActivityApplicant" />
+            <End Role="ActivityApplicantInformation" EntitySet="ActivityApplicantInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActivityC__Activ__17F790F9" Association="Self.FK__ActivityC__Activ__17F790F9">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="ActivityCoOrganizer" EntitySet="ActivityCoOrganizer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActivityO__Activ__151B244E" Association="Self.FK__ActivityO__Activ__151B244E">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="ActivityOrganizer" EntitySet="ActivityOrganizer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActivityR__Activ__1DB06A4F" Association="Self.FK__ActivityR__Activ__1DB06A4F">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="ActivityResult" EntitySet="ActivityResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActivityS__Activ__1AD3FDA4" Association="Self.FK__ActivityS__Activ__1AD3FDA4">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="ActivitySponsor" EntitySet="ActivitySponsor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CodeTable__Creat__72C60C4A" Association="Self.FK__CodeTable__Creat__72C60C4A">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="CodeTable" EntitySet="CodeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CodeTable__Modif__73BA3083" Association="Self.FK__CodeTable__Modif__73BA3083">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="CodeTable" EntitySet="CodeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Creat__66603565" Association="Self.FK__Departmen__Creat__66603565">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Creat__6B24EA82" Association="Self.FK__Departmen__Creat__6B24EA82">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="DepartmentAuthentication" EntitySet="DepartmentAuthentication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Depar__6A30C649" Association="Self.FK__Departmen__Depar__6A30C649">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="DepartmentAuthentication" EntitySet="DepartmentAuthentication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Modif__6754599E" Association="Self.FK__Departmen__Modif__6754599E">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Modif__6C190EBB" Association="Self.FK__Departmen__Modif__6C190EBB">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="DepartmentAuthentication" EntitySet="DepartmentAuthentication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserAuthe__Creat__6EF57B66" Association="Self.FK__UserAuthe__Creat__6EF57B66">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="UserAuthentication" EntitySet="UserAuthentication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserAuthe__Modif__6FE99F9F" Association="Self.FK__UserAuthe__Modif__6FE99F9F">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="UserAuthentication" EntitySet="UserAuthentication" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activity" EntityType="EntitiesModel.Activity" />
+          <EntitySet Name="ActivityApplicant" EntityType="EntitiesModel.ActivityApplicant" />
+          <EntitySet Name="ActivityApplicantInformation" EntityType="EntitiesModel.ActivityApplicantInformation" />
+          <EntitySet Name="ActivityAttachment" EntityType="EntitiesModel.ActivityAttachment" />
+          <EntitySet Name="ActivityCoOrganizer" EntityType="EntitiesModel.ActivityCoOrganizer" />
+          <EntitySet Name="ActivityOrganizer" EntityType="EntitiesModel.ActivityOrganizer" />
+          <EntitySet Name="ActivityResult" EntityType="EntitiesModel.ActivityResult" />
+          <EntitySet Name="ActivitySponsor" EntityType="EntitiesModel.ActivitySponsor" />
+          <EntitySet Name="ActivityType" EntityType="EntitiesModel.ActivityType" />
+          <EntitySet Name="CodeTable" EntityType="EntitiesModel.CodeTable" />
+          <EntitySet Name="Department" EntityType="EntitiesModel.Department" />
+          <EntitySet Name="DepartmentAuthentication" EntityType="EntitiesModel.DepartmentAuthentication" />
+          <EntitySet Name="UserAccount" EntityType="EntitiesModel.UserAccount" />
+          <EntitySet Name="UserAuthentication" EntityType="EntitiesModel.UserAuthentication" />
+          <AssociationSet Name="FK__Activity__Activi__123EB7A3" Association="EntitiesModel.FK__Activity__Activi__123EB7A3">
+            <End Role="ActivityType" EntitySet="ActivityType" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActivityA__Activ__208CD6FA" Association="EntitiesModel.FK__ActivityA__Activ__208CD6FA">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="ActivityAttachment" EntitySet="ActivityAttachment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActivityA__Activ__236943A5" Association="EntitiesModel.FK__ActivityA__Activ__236943A5">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="ActivityApplicant" EntitySet="ActivityApplicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActivityC__Activ__17F790F9" Association="EntitiesModel.FK__ActivityC__Activ__17F790F9">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="ActivityCoOrganizer" EntitySet="ActivityCoOrganizer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActivityO__Activ__151B244E" Association="EntitiesModel.FK__ActivityO__Activ__151B244E">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="ActivityOrganizer" EntitySet="ActivityOrganizer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActivityR__Activ__1DB06A4F" Association="EntitiesModel.FK__ActivityR__Activ__1DB06A4F">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="ActivityResult" EntitySet="ActivityResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActivityS__Activ__1AD3FDA4" Association="EntitiesModel.FK__ActivityS__Activ__1AD3FDA4">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="ActivitySponsor" EntitySet="ActivitySponsor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ActivityA__Appli__2645B050" Association="EntitiesModel.FK__ActivityA__Appli__2645B050">
+            <End Role="ActivityApplicant" EntitySet="ActivityApplicant" />
+            <End Role="ActivityApplicantInformation" EntitySet="ActivityApplicantInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CodeTable__Creat__72C60C4A" Association="EntitiesModel.FK__CodeTable__Creat__72C60C4A">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="CodeTable" EntitySet="CodeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CodeTable__Modif__73BA3083" Association="EntitiesModel.FK__CodeTable__Modif__73BA3083">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="CodeTable" EntitySet="CodeTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Creat__66603565" Association="EntitiesModel.FK__Departmen__Creat__66603565">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Depar__6A30C649" Association="EntitiesModel.FK__Departmen__Depar__6A30C649">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="DepartmentAuthentication" EntitySet="DepartmentAuthentication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Modif__6754599E" Association="EntitiesModel.FK__Departmen__Modif__6754599E">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Creat__6B24EA82" Association="EntitiesModel.FK__Departmen__Creat__6B24EA82">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="DepartmentAuthentication" EntitySet="DepartmentAuthentication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Departmen__Modif__6C190EBB" Association="EntitiesModel.FK__Departmen__Modif__6C190EBB">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="DepartmentAuthentication" EntitySet="DepartmentAuthentication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserAuthe__Creat__6EF57B66" Association="EntitiesModel.FK__UserAuthe__Creat__6EF57B66">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="UserAuthentication" EntitySet="UserAuthentication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserAuthe__Modif__6FE99F9F" Association="EntitiesModel.FK__UserAuthe__Modif__6FE99F9F">
+            <End Role="UserAccount" EntitySet="UserAccount" />
+            <End Role="UserAuthentication" EntitySet="UserAuthentication" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityID" />
+          </Key>
+          <Property Name="ActivityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="ActivityType" Type="Int16" Nullable="false" />
+          <Property Name="ApplicantLimit" Type="Int32" />
+          <Property Name="Meal" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="StudyProof" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="StudyHours" Type="Double" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ActivityStartTime" Type="DateTime" Precision="0" />
+          <Property Name="ActivityEndTime" Type="DateTime" Precision="0" />
+          <Property Name="ApplyStartTime" Type="DateTime" Precision="0" />
+          <Property Name="ApplyEndTime" Type="DateTime" Precision="0" />
+          <Property Name="CreateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="0" />
+          <Property Name="ModifyID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="0" />
+          <Property Name="Record" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ActivityType1" Relationship="EntitiesModel.FK__Activity__Activi__123EB7A3" FromRole="Activity" ToRole="ActivityType" />
+          <NavigationProperty Name="ActivityAttachment" Relationship="EntitiesModel.FK__ActivityA__Activ__208CD6FA" FromRole="Activity" ToRole="ActivityAttachment" />
+          <NavigationProperty Name="ActivityApplicant" Relationship="EntitiesModel.FK__ActivityA__Activ__236943A5" FromRole="Activity" ToRole="ActivityApplicant" />
+          <NavigationProperty Name="ActivityCoOrganizer" Relationship="EntitiesModel.FK__ActivityC__Activ__17F790F9" FromRole="Activity" ToRole="ActivityCoOrganizer" />
+          <NavigationProperty Name="ActivityOrganizer" Relationship="EntitiesModel.FK__ActivityO__Activ__151B244E" FromRole="Activity" ToRole="ActivityOrganizer" />
+          <NavigationProperty Name="ActivityResult" Relationship="EntitiesModel.FK__ActivityR__Activ__1DB06A4F" FromRole="Activity" ToRole="ActivityResult" />
+          <NavigationProperty Name="ActivitySponsor" Relationship="EntitiesModel.FK__ActivityS__Activ__1AD3FDA4" FromRole="Activity" ToRole="ActivitySponsor" />
+        </EntityType>
+        <EntityType Name="ActivityApplicant">
+          <Key>
+            <PropertyRef Name="ApplicantID" />
+          </Key>
+          <Property Name="ApplicantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <Property Name="ApplyID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsCancel" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IsAttend" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="AttendTime" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Activity" Relationship="EntitiesModel.FK__ActivityA__Activ__236943A5" FromRole="ActivityApplicant" ToRole="Activity" />
+          <NavigationProperty Name="ActivityApplicantInformation" Relationship="EntitiesModel.FK__ActivityA__Appli__2645B050" FromRole="ActivityApplicant" ToRole="ActivityApplicantInformation" />
+        </EntityType>
+        <EntityType Name="ActivityApplicantInformation">
+          <Key>
+            <PropertyRef Name="InformationID" />
+          </Key>
+          <Property Name="InformationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicantID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="Byte" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Meal" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="ActivityApplicant" Relationship="EntitiesModel.FK__ActivityA__Appli__2645B050" FromRole="ActivityApplicantInformation" ToRole="ActivityApplicant" />
+        </EntityType>
+        <EntityType Name="ActivityAttachment">
+          <Key>
+            <PropertyRef Name="AttachmentID" />
+          </Key>
+          <Property Name="AttachmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <Property Name="AttachmentPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Activity" Relationship="EntitiesModel.FK__ActivityA__Activ__208CD6FA" FromRole="ActivityAttachment" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="ActivityCoOrganizer">
+          <Key>
+            <PropertyRef Name="CoOrganizerID" />
+          </Key>
+          <Property Name="CoOrganizerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Activity" Relationship="EntitiesModel.FK__ActivityC__Activ__17F790F9" FromRole="ActivityCoOrganizer" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="ActivityOrganizer">
+          <Key>
+            <PropertyRef Name="OrganizerID" />
+          </Key>
+          <Property Name="OrganizerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Activity" Relationship="EntitiesModel.FK__ActivityO__Activ__151B244E" FromRole="ActivityOrganizer" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="ActivityResult">
+          <Key>
+            <PropertyRef Name="ResultID" />
+          </Key>
+          <Property Name="ResultID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <Property Name="Result" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Activity" Relationship="EntitiesModel.FK__ActivityR__Activ__1DB06A4F" FromRole="ActivityResult" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="ActivitySponsor">
+          <Key>
+            <PropertyRef Name="SponsorID" />
+          </Key>
+          <Property Name="SponsorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Activity" Relationship="EntitiesModel.FK__ActivityS__Activ__1AD3FDA4" FromRole="ActivitySponsor" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="ActivityType">
+          <Key>
+            <PropertyRef Name="ActivityTypeID" />
+          </Key>
+          <Property Name="ActivityTypeID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="CreateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="0" />
+          <Property Name="ModifyID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="0" />
+          <Property Name="Record" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Activity" Relationship="EntitiesModel.FK__Activity__Activi__123EB7A3" FromRole="ActivityType" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="CodeTable">
+          <Key>
+            <PropertyRef Name="CodeTableID" />
+          </Key>
+          <Property Name="CodeTableID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ColumnName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CreateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="0" />
+          <Property Name="ModifyID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="0" />
+          <Property Name="Record" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserAccount" Relationship="EntitiesModel.FK__CodeTable__Creat__72C60C4A" FromRole="CodeTable" ToRole="UserAccount" />
+          <NavigationProperty Name="UserAccount1" Relationship="EntitiesModel.FK__CodeTable__Modif__73BA3083" FromRole="CodeTable" ToRole="UserAccount" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentEName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="0" />
+          <Property Name="ModifyID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="0" />
+          <Property Name="Record" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserAccount" Relationship="EntitiesModel.FK__Departmen__Creat__66603565" FromRole="Department" ToRole="UserAccount" />
+          <NavigationProperty Name="DepartmentAuthentication" Relationship="EntitiesModel.FK__Departmen__Depar__6A30C649" FromRole="Department" ToRole="DepartmentAuthentication" />
+          <NavigationProperty Name="UserAccount1" Relationship="EntitiesModel.FK__Departmen__Modif__6754599E" FromRole="Department" ToRole="UserAccount" />
+        </EntityType>
+        <EntityType Name="DepartmentAuthentication">
+          <Key>
+            <PropertyRef Name="AuthenticationID" />
+          </Key>
+          <Property Name="AuthenticationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="FunctionAuthentication" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="0" />
+          <Property Name="ModifyID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="0" />
+          <Property Name="Record" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Department" Relationship="EntitiesModel.FK__Departmen__Depar__6A30C649" FromRole="DepartmentAuthentication" ToRole="Department" />
+          <NavigationProperty Name="UserAccount" Relationship="EntitiesModel.FK__Departmen__Creat__6B24EA82" FromRole="DepartmentAuthentication" ToRole="UserAccount" />
+          <NavigationProperty Name="UserAccount1" Relationship="EntitiesModel.FK__Departmen__Modif__6C190EBB" FromRole="DepartmentAuthentication" ToRole="UserAccount" />
+        </EntityType>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SystemLevel" Type="Int32" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Enabled" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Record" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CodeTable" Relationship="EntitiesModel.FK__CodeTable__Creat__72C60C4A" FromRole="UserAccount" ToRole="CodeTable" />
+          <NavigationProperty Name="CodeTable1" Relationship="EntitiesModel.FK__CodeTable__Modif__73BA3083" FromRole="UserAccount" ToRole="CodeTable" />
+          <NavigationProperty Name="Department" Relationship="EntitiesModel.FK__Departmen__Creat__66603565" FromRole="UserAccount" ToRole="Department" />
+          <NavigationProperty Name="Department1" Relationship="EntitiesModel.FK__Departmen__Modif__6754599E" FromRole="UserAccount" ToRole="Department" />
+          <NavigationProperty Name="DepartmentAuthentication" Relationship="EntitiesModel.FK__Departmen__Creat__6B24EA82" FromRole="UserAccount" ToRole="DepartmentAuthentication" />
+          <NavigationProperty Name="DepartmentAuthentication1" Relationship="EntitiesModel.FK__Departmen__Modif__6C190EBB" FromRole="UserAccount" ToRole="DepartmentAuthentication" />
+          <NavigationProperty Name="UserAuthentication" Relationship="EntitiesModel.FK__UserAuthe__Creat__6EF57B66" FromRole="UserAccount" ToRole="UserAuthentication" />
+          <NavigationProperty Name="UserAuthentication1" Relationship="EntitiesModel.FK__UserAuthe__Modif__6FE99F9F" FromRole="UserAccount" ToRole="UserAuthentication" />
+        </EntityType>
+        <EntityType Name="UserAuthentication">
+          <Key>
+            <PropertyRef Name="AuthenticationID" />
+          </Key>
+          <Property Name="AuthenticationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FunctionAuthentication" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="0" />
+          <Property Name="ModifyID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyTime" Type="DateTime" Precision="0" />
+          <Property Name="Record" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserAccount" Relationship="EntitiesModel.FK__UserAuthe__Creat__6EF57B66" FromRole="UserAuthentication" ToRole="UserAccount" />
+          <NavigationProperty Name="UserAccount1" Relationship="EntitiesModel.FK__UserAuthe__Modif__6FE99F9F" FromRole="UserAuthentication" ToRole="UserAccount" />
+        </EntityType>
+        <Association Name="FK__Activity__Activi__123EB7A3">
+          <End Type="EntitiesModel.ActivityType" Role="ActivityType" Multiplicity="1" />
+          <End Type="EntitiesModel.Activity" Role="Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityType">
+              <PropertyRef Name="ActivityTypeID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ActivityType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActivityA__Activ__208CD6FA">
+          <End Type="EntitiesModel.Activity" Role="Activity" Multiplicity="1" />
+          <End Type="EntitiesModel.ActivityAttachment" Role="ActivityAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="ActivityAttachment">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActivityA__Activ__236943A5">
+          <End Type="EntitiesModel.Activity" Role="Activity" Multiplicity="1" />
+          <End Type="EntitiesModel.ActivityApplicant" Role="ActivityApplicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="ActivityApplicant">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActivityC__Activ__17F790F9">
+          <End Type="EntitiesModel.Activity" Role="Activity" Multiplicity="1" />
+          <End Type="EntitiesModel.ActivityCoOrganizer" Role="ActivityCoOrganizer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="ActivityCoOrganizer">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActivityO__Activ__151B244E">
+          <End Type="EntitiesModel.Activity" Role="Activity" Multiplicity="1" />
+          <End Type="EntitiesModel.ActivityOrganizer" Role="ActivityOrganizer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="ActivityOrganizer">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActivityR__Activ__1DB06A4F">
+          <End Type="EntitiesModel.Activity" Role="Activity" Multiplicity="1" />
+          <End Type="EntitiesModel.ActivityResult" Role="ActivityResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="ActivityResult">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActivityS__Activ__1AD3FDA4">
+          <End Type="EntitiesModel.Activity" Role="Activity" Multiplicity="1" />
+          <End Type="EntitiesModel.ActivitySponsor" Role="ActivitySponsor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityID" />
+            </Principal>
+            <Dependent Role="ActivitySponsor">
+              <PropertyRef Name="ActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ActivityA__Appli__2645B050">
+          <End Type="EntitiesModel.ActivityApplicant" Role="ActivityApplicant" Multiplicity="1" />
+          <End Type="EntitiesModel.ActivityApplicantInformation" Role="ActivityApplicantInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityApplicant">
+              <PropertyRef Name="ApplicantID" />
+            </Principal>
+            <Dependent Role="ActivityApplicantInformation">
+              <PropertyRef Name="ApplicantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CodeTable__Creat__72C60C4A">
+          <End Type="EntitiesModel.UserAccount" Role="UserAccount" Multiplicity="0..1" />
+          <End Type="EntitiesModel.CodeTable" Role="CodeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="CodeTable">
+              <PropertyRef Name="CreateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CodeTable__Modif__73BA3083">
+          <End Type="EntitiesModel.UserAccount" Role="UserAccount" Multiplicity="0..1" />
+          <End Type="EntitiesModel.CodeTable" Role="CodeTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="CodeTable">
+              <PropertyRef Name="ModifyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Creat__66603565">
+          <End Type="EntitiesModel.UserAccount" Role="UserAccount" Multiplicity="0..1" />
+          <End Type="EntitiesModel.Department" Role="Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="CreateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Depar__6A30C649">
+          <End Type="EntitiesModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="EntitiesModel.DepartmentAuthentication" Role="DepartmentAuthentication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="DepartmentAuthentication">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Modif__6754599E">
+          <End Type="EntitiesModel.UserAccount" Role="UserAccount" Multiplicity="0..1" />
+          <End Type="EntitiesModel.Department" Role="Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="ModifyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Creat__6B24EA82">
+          <End Type="EntitiesModel.UserAccount" Role="UserAccount" Multiplicity="0..1" />
+          <End Type="EntitiesModel.DepartmentAuthentication" Role="DepartmentAuthentication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="DepartmentAuthentication">
+              <PropertyRef Name="CreateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Departmen__Modif__6C190EBB">
+          <End Type="EntitiesModel.UserAccount" Role="UserAccount" Multiplicity="0..1" />
+          <End Type="EntitiesModel.DepartmentAuthentication" Role="DepartmentAuthentication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="DepartmentAuthentication">
+              <PropertyRef Name="ModifyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserAuthe__Creat__6EF57B66">
+          <End Type="EntitiesModel.UserAccount" Role="UserAccount" Multiplicity="0..1" />
+          <End Type="EntitiesModel.UserAuthentication" Role="UserAuthentication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="UserAuthentication">
+              <PropertyRef Name="CreateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserAuthe__Modif__6FE99F9F">
+          <End Type="EntitiesModel.UserAccount" Role="UserAccount" Multiplicity="0..1" />
+          <End Type="EntitiesModel.UserAuthentication" Role="UserAuthentication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAccount">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="UserAuthentication">
+              <PropertyRef Name="ModifyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EntitiesModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Activity">
+            <EntityTypeMapping TypeName="EntitiesModel.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="Record" ColumnName="Record" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="ModifyID" ColumnName="ModifyID" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateID" ColumnName="CreateID" />
+                <ScalarProperty Name="ApplyEndTime" ColumnName="ApplyEndTime" />
+                <ScalarProperty Name="ApplyStartTime" ColumnName="ApplyStartTime" />
+                <ScalarProperty Name="ActivityEndTime" ColumnName="ActivityEndTime" />
+                <ScalarProperty Name="ActivityStartTime" ColumnName="ActivityStartTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StudyHours" ColumnName="StudyHours" />
+                <ScalarProperty Name="StudyProof" ColumnName="StudyProof" />
+                <ScalarProperty Name="Meal" ColumnName="Meal" />
+                <ScalarProperty Name="ApplicantLimit" ColumnName="ApplicantLimit" />
+                <ScalarProperty Name="ActivityType" ColumnName="ActivityType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ActivityName" ColumnName="ActivityName" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityApplicant">
+            <EntityTypeMapping TypeName="EntitiesModel.ActivityApplicant">
+              <MappingFragment StoreEntitySet="ActivityApplicant">
+                <ScalarProperty Name="AttendTime" ColumnName="AttendTime" />
+                <ScalarProperty Name="IsAttend" ColumnName="IsAttend" />
+                <ScalarProperty Name="IsCancel" ColumnName="IsCancel" />
+                <ScalarProperty Name="ApplyID" ColumnName="ApplyID" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="ApplicantID" ColumnName="ApplicantID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityApplicantInformation">
+            <EntityTypeMapping TypeName="EntitiesModel.ActivityApplicantInformation">
+              <MappingFragment StoreEntitySet="ActivityApplicantInformation">
+                <ScalarProperty Name="Meal" ColumnName="Meal" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ApplicantID" ColumnName="ApplicantID" />
+                <ScalarProperty Name="InformationID" ColumnName="InformationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityAttachment">
+            <EntityTypeMapping TypeName="EntitiesModel.ActivityAttachment">
+              <MappingFragment StoreEntitySet="ActivityAttachment">
+                <ScalarProperty Name="AttachmentPath" ColumnName="AttachmentPath" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="AttachmentID" ColumnName="AttachmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityCoOrganizer">
+            <EntityTypeMapping TypeName="EntitiesModel.ActivityCoOrganizer">
+              <MappingFragment StoreEntitySet="ActivityCoOrganizer">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="CoOrganizerID" ColumnName="CoOrganizerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityOrganizer">
+            <EntityTypeMapping TypeName="EntitiesModel.ActivityOrganizer">
+              <MappingFragment StoreEntitySet="ActivityOrganizer">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="OrganizerID" ColumnName="OrganizerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityResult">
+            <EntityTypeMapping TypeName="EntitiesModel.ActivityResult">
+              <MappingFragment StoreEntitySet="ActivityResult">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivitySponsor">
+            <EntityTypeMapping TypeName="EntitiesModel.ActivitySponsor">
+              <MappingFragment StoreEntitySet="ActivitySponsor">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="SponsorID" ColumnName="SponsorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityType">
+            <EntityTypeMapping TypeName="EntitiesModel.ActivityType">
+              <MappingFragment StoreEntitySet="ActivityType">
+                <ScalarProperty Name="Record" ColumnName="Record" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="ModifyID" ColumnName="ModifyID" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateID" ColumnName="CreateID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="ActivityTypeID" ColumnName="ActivityTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CodeTable">
+            <EntityTypeMapping TypeName="EntitiesModel.CodeTable">
+              <MappingFragment StoreEntitySet="CodeTable">
+                <ScalarProperty Name="Record" ColumnName="Record" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="ModifyID" ColumnName="ModifyID" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateID" ColumnName="CreateID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="CodeTableID" ColumnName="CodeTableID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="EntitiesModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Record" ColumnName="Record" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="ModifyID" ColumnName="ModifyID" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateID" ColumnName="CreateID" />
+                <ScalarProperty Name="DepartmentEName" ColumnName="DepartmentEName" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartmentAuthentication">
+            <EntityTypeMapping TypeName="EntitiesModel.DepartmentAuthentication">
+              <MappingFragment StoreEntitySet="DepartmentAuthentication">
+                <ScalarProperty Name="Record" ColumnName="Record" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="ModifyID" ColumnName="ModifyID" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateID" ColumnName="CreateID" />
+                <ScalarProperty Name="FunctionAuthentication" ColumnName="FunctionAuthentication" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="AuthenticationID" ColumnName="AuthenticationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAccount">
+            <EntityTypeMapping TypeName="EntitiesModel.UserAccount">
+              <MappingFragment StoreEntitySet="UserAccount">
+                <ScalarProperty Name="Record" ColumnName="Record" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="SystemLevel" ColumnName="SystemLevel" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAuthentication">
+            <EntityTypeMapping TypeName="EntitiesModel.UserAuthentication">
+              <MappingFragment StoreEntitySet="UserAuthentication">
+                <ScalarProperty Name="Record" ColumnName="Record" />
+                <ScalarProperty Name="ModifyTime" ColumnName="ModifyTime" />
+                <ScalarProperty Name="ModifyID" ColumnName="ModifyID" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateID" ColumnName="CreateID" />
+                <ScalarProperty Name="FunctionAuthentication" ColumnName="FunctionAuthentication" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="AuthenticationID" ColumnName="AuthenticationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
