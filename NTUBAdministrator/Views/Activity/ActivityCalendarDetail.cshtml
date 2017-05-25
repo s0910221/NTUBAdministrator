@@ -119,7 +119,7 @@
 
     if (Model.IsCancel == null || Model.IsCancel.Equals("1"))
     {
-        using (Html.BeginForm("ApplyActivity", "Activities", FormMethod.Post, new { id = "ApplyForm" }))
+        using (Html.BeginForm("ApplyActivity", "Activity", FormMethod.Post, new { id = "ApplyForm" }))
         {
             @Html.AntiForgeryToken()
             <div class="form-group">
@@ -145,7 +145,7 @@
     }
     else
     {
-        using (Html.BeginForm("CancelApplyActivity", "Activities", FormMethod.Post, new { id = "ApplyForm" }))
+        using (Html.BeginForm("CancelApplyActivity", "Activity", FormMethod.Post, new { id = "ApplyForm" }))
         {
             @Html.AntiForgeryToken()
             <div class="form-group">

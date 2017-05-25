@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-
+//沒用到
 namespace NTUBAdministrator.Utils
 {
     public class ObjectUtility

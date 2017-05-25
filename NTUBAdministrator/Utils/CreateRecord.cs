@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Reflection;
-
+//沒用到
 namespace NTUBAdministrator.Utils
 {
-    public static class CreateRecord
+    public class CreateRecord<T> where T : class
     {
-        private static string CreateID;
-        private static string ModifyID;
-        private static DateTime? CreateTime;
-        private static DateTime? ModifyTime;
         
-
-        public static T AddRecord<T>(this T t,string accountID)
-        {            
+        public T AddRecord(T t, string accountID)
+        {
             if (accountID != null)
             {
                 t.GetType().GetProperty("CreateID").SetValue(t, accountID);

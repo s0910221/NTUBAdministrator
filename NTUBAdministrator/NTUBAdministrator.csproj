@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -185,20 +188,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ActivitiesController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ActivityController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Interface\IActivityApplicantRepository.cs" />
+    <Compile Include="Models\Interface\IActivityRepository.cs" />
+    <Compile Include="Models\Interface\IActivityTypeRepository.cs" />
+    <Compile Include="Models\Interface\IRepository.cs" />
+    <Compile Include="Models\Interface\IUserAccountRepository.cs" />
+    <Compile Include="Models\Repository\ActivityApplicantRepository.cs" />
+    <Compile Include="Models\Repository\ActivityRepository.cs" />
+    <Compile Include="Models\Repository\ActivityTypeRepository.cs" />
+    <Compile Include="Models\Repository\GenericRepository.cs" />
+    <Compile Include="Models\Repository\UserAccountRepository.cs" />
+    <Compile Include="Services\ActivityService.cs" />
+    <Compile Include="Services\Interface\IActivityService.cs" />
+    <Compile Include="Services\Interface\IResult.cs" />
+    <Compile Include="Services\Result.cs" />
+    <Compile Include="Utils\ActivityProfile.cs" />
+    <Compile Include="Utils\SessionData.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
-    <Compile Include="ViewModels\ActivitiesViewModel.cs" />
     <Compile Include="Models\Activity.cs">
       <DependentUpon>CaseModel.tt</DependentUpon>
     </Compile>
@@ -251,6 +268,7 @@
       <DependentUpon>CaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="ViewModels\ActivityViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\UserAccount.cs">
       <DependentUpon>CaseModel.tt</DependentUpon>
@@ -508,40 +526,26 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Activities\AddActivity.cshtml" />
-    <Content Include="Views\Activities\Delete.cshtml" />
-    <Content Include="Views\Activities\Details.cshtml" />
-    <Content Include="Views\Activities\Edit.cshtml" />
-    <Content Include="Views\Activities\ActivityManagement.cshtml" />
-    <Content Include="Views\Activities\AddActivityType.cshtml" />
-    <Content Include="Views\Activities\ActivityCalendar.cshtml" />
-    <Content Include="Views\Activities\CheckActivity.cshtml" />
-    <Content Include="Views\Activities\ActivityCalendarDetail.cshtml" />
+    <Content Include="Views\Activity\AddActivity.cshtml" />
+    <Content Include="Views\Activity\Delete.cshtml" />
+    <Content Include="Views\Activity\Edit.cshtml" />
+    <Content Include="Views\Activity\ActivityManagement.cshtml" />
+    <Content Include="Views\Activity\AddActivityType.cshtml" />
+    <Content Include="Views\Activity\ActivityCalendar.cshtml" />
+    <Content Include="Views\Activity\CheckActivity.cshtml" />
+    <Content Include="Views\Activity\ActivityCalendarDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Models\Repository\" />
-    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

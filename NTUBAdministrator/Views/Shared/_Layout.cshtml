@@ -39,7 +39,7 @@
             <div class="navbar-collapse collapse">
                 @*<ul class="nav navbar-nav">
         <li>@Html.ActionLink("首頁", "Index", "Home")</li>
-        <li>@Html.ActionLink("辦理活動系統", "Index", "Activities")</li>
+        <li>@Html.ActionLink("辦理活動系統", "Index", "Activity")</li>
     </ul>*@
                 @Html.Partial("_LoginPartial")
             </div>
@@ -51,12 +51,12 @@
         <div style="width:20%; float:left;">
             <ul class="pde">
                 <li>@Html.ActionLink("首頁", "Index", "Home")</li>
-                <li>@Html.ActionLink("辦理活動系統", "Index", "Activities")
+                <li>@Html.ActionLink("辦理活動系統", "Index", "Activity")
                     <ul>
-                        <li>@Html.ActionLink("行事曆", "ActivityCalendar", "Activities")</li>
+                        <li>@Html.ActionLink("行事曆", "ActivityCalendar", "Activity")</li>
                         @if (@Session["AccountID"] != null)
                         {
-                            <li>@Html.ActionLink("活動管理", "ActivityManagement", "Activities")</li>
+                            <li>@Html.ActionLink("活動管理", "ActivityManagement", "Activity")</li>
                         }
                          
                     </ul>

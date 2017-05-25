@@ -1,4 +1,4 @@
-﻿@model NTUBAdministrator.ViewModels.ActivitiesCheckViewModel
+﻿@model NTUBAdministrator.ViewModels.ActivityCheckViewModel
 
 @{
     ViewBag.Title = @ViewBag.contentTitle;
@@ -79,7 +79,7 @@
         <dd>
             @if (Model.Status == "0")
             {
-                <p>審請中</p>
+                <p>申請中</p>
             }
             @if (Model.Status == "1")
             {
@@ -167,7 +167,7 @@
 </div>
 @if (Model.SystemLevel != null)
 {
-    using (Html.BeginForm("CheckActivity", "Activities", FormMethod.Post, new { id = "CheckForm" }))
+    using (Html.BeginForm("CheckActivity", "Activity", FormMethod.Post, new { id = "CheckForm" }))
     {
         @Html.AntiForgeryToken()
         <div class="form-group">
@@ -176,7 +176,7 @@
                 <input hidden id="status" name="Status" value="@Model.Status" />
                 <button class="btn btn-default" onclick="submitForm(1)">通過</button>
                 <button class="btn btn-default" onclick="submitForm(2)">不通過</button>
-                <button class="btn btn-default">@Html.ActionLink("取消", "ActivityManagement")</button>
+                <button class="btn btn-default" onclick="submitForm(-1)">@Html.ActionLink("取消", "ActivityManagement")</button>
             </div>
         </div>
     }

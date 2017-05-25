@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NTUBAdministrator.ViewModels
 {
-    public class ActivitiesManagementViewModel
+    public class ActivityManagementViewModel
     {
         [Required]
         [Display(Name = "活動ID")]
@@ -18,7 +18,7 @@ namespace NTUBAdministrator.ViewModels
         public string Status { get; set; }
     }
 
-    public class ActivitiesCalendarViewModel
+    public class ActivityCalendarViewModel
     {
         public string ActivityName { get; set; }
         public DateTime? ActivityStartTime { get; set; }
@@ -92,7 +92,7 @@ namespace NTUBAdministrator.ViewModels
 
     }
 
-    public class ActivitiesCheckViewModel
+    public class ActivityCheckViewModel
     {
         [Display(Name = "活動ID")]
         public int ActivityID { get; set; }
@@ -161,7 +161,7 @@ namespace NTUBAdministrator.ViewModels
 
     }
 
-    public class ActivitiesViewModel
+    public class ActivityViewModel
     {
         [Required]
         [Display(Name = "活動名稱")]
@@ -217,7 +217,7 @@ namespace NTUBAdministrator.ViewModels
         public string ActivitySponsor { get; set; }
     }
 
-    public class ActivitiesTypeViewModel
+    public class ActivityTypeViewModel
     {
 
         public short ActivityTypeID { get; set; }

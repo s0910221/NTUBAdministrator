@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NTUBAdministrator.ViewModels.ActivitiesManagementViewModel>
+﻿@model IEnumerable<NTUBAdministrator.ViewModels.ActivityManagementViewModel>
 @{
     ViewBag.Title = "行事曆";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -32,7 +32,7 @@
             eventLimit: true, // allow "more" link when too many events
             events: function (start, end, timezone, callback) {
                 $.ajax({
-                    url: '/Activities/ActivityCalendarEvent',
+                    url: '/Activity/ActivityCalendarEvent',
                     type: 'Post',
                     dataType: 'json',
                     data: {

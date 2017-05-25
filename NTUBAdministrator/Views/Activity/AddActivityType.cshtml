@@ -1,4 +1,4 @@
-﻿@model NTUBAdministrator.ViewModels.ActivitiesTypeViewModel
+﻿@model NTUBAdministrator.ViewModels.ActivityTypeViewModel
 @{
     ViewBag.Title = "新增活動種類";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,7 +7,7 @@
 <h2>新增活動種類</h2>
 
 
-@using (Html.BeginForm("AddActivityType", "Activities", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("AddActivityType", "Activity", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
