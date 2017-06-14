@@ -13,8 +13,8 @@ pde={
 	parentClass:'parent',
 	currentClass:'current',
 	// images added to the parent links
-	openImage:'/Content/box2.png',
-    closedImage:'/Content/box1.png',
+    openImage:'/Images/activity_opened.png',
+    closedImage:'/Images/activity_closed.png',
 	openMessage:'close',
 	closedMessage:'open',
     //boolean to keep the section with the STRONG open or not.

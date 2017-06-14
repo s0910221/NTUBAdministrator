@@ -11,20 +11,30 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <style>
+        html, body {
+            height: 100%;
+        }
+        body{
+            padding-bottom:0;
+        }
         ul.pde li {
             list-style-type: none;
-            /*list-style-image: url(~/Content/box1.png);*/
+        }
+        ul.pde a{
+            color:#FFFFFF;
         }
 
-        ul.pde li:hover {
-            list-style-type: none;
-            /*list-style-image: url(~/Content/box2.png);*/
+        ul.pde a:focus {
+            text-decoration-line:none;
+        }
+        li a img{
+            width:10%;
+            height:10%;
         }
     </style>
-
 </head>
-<body>
 
+<body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -38,17 +48,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 @*<ul class="nav navbar-nav">
-        <li>@Html.ActionLink("首頁", "Index", "Home")</li>
-        <li>@Html.ActionLink("辦理活動系統", "Index", "Activity")</li>
-    </ul>*@
+                    <li>@Html.ActionLink("首頁", "Index", "Home")</li>
+                    <li>@Html.ActionLink("辦理活動系統", "Index", "Activity")</li>
+                </ul>*@
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     
 
-    <div class="container" style="margin:10px 0;">
-        <div style="width:20%; float:left;">
+    <div class="container" style="margin:0; padding:0; height:100%;">
+        <div style="width:20%; float:left; margin:0; height:100%; background-color:#473E7B;">
             <ul class="pde">
                 <li>@Html.ActionLink("首頁", "Index", "Home")</li>
                 <li>@Html.ActionLink("辦理活動系統", "Index", "Activity")
@@ -63,7 +73,7 @@
                 </li>                
             </ul>
         </div>
-        <div class="body-content" style="width:80%; float:right;">
+        <div class="body-content" style="width:80%; overflow: hidden">
             @RenderBody()
             <hr />
         </div>
